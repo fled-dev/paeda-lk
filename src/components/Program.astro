@@ -100,7 +100,6 @@ const week = [
           <div class="day__body">
             <div class="day__meta">
               <span class="day__time">{d.time}</span>
-              {d.kind && <span class="day__kind">{d.kind}</span>}
             </div>
             <h3 class="day__title">{d.title}</h3>
             <p class="day__text">{d.body}</p>
@@ -237,13 +236,6 @@ const week = [
   .day__time {
     font-weight: 600;
     font-variant-numeric: tabular-nums;
-  }
-
-  .day__kind {
-    padding: 3px 10px;
-    border-radius: 999px;
-    background: color-mix(in oklab, var(--paper-deep) 55%, transparent);
-    color: var(--ink-soft);
   }
 
   .day__title {

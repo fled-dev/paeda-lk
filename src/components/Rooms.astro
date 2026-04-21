@@ -100,8 +100,7 @@ const rooms = [
           </div>
           <div class="room__copy">
             <div class="room__tagrow">
-              <span class="room__num">R.{String(i + 1).padStart(2, "0")}</span>
-              <span class="room__tag">{r.tag}</span>
+              <span class="room__num">RAUM {String(i + 1).padStart(2, "0")}</span>
             </div>
             <h3 class="room__title">{r.title}</h3>
             <p class="room__body">{r.copy}</p>
@@ -196,14 +195,6 @@ const rooms = [
   .room__num {
     font-weight: 700;
     color: var(--terracotta);
-  }
-
-  .room__tag {
-    padding: 4px 10px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--forest-soft);
-    background: var(--paper-soft);
   }
 
   .room__title {
