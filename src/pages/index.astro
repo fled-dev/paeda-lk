@@ -1,0 +1,25 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Manifest from "../components/Manifest.astro";
+import Rooms from "../components/Rooms.astro";
+import Program from "../components/Program.astro";
+import Team from "../components/Team.astro";
+import Visit from "../components/Visit.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Base>
+  <Nav />
+  <main>
+    <Hero />
+    <div class="container"><div class="section-divider section-divider--mark"></div></div>
+    <Manifest />
+    <Rooms />
+    <Program />
+    <Team />
+    <Visit />
+  </main>
+  <Footer />
+</Base>

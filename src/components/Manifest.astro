@@ -1,0 +1,188 @@
+---
+const pillars = [
+  {
+    no: "01",
+    word: "Ankommen.",
+    body: "Tür auf, Jacke weg, Platz suchen. Wir fragen nicht, wie dein Tag war — wir machen einen, an dem du den vergessen kannst.",
+  },
+  {
+    no: "02",
+    word: "Bleiben.",
+    body: "So lange du willst. Ob du zwei Stunden still lesen oder mit uns bis zum Stuhleaufstellen quatschen willst — beides zählt.",
+  },
+  {
+    no: "03",
+    word: "Wiederkommen.",
+    body: "Wir merken uns deinen Namen. Deinen Lieblingsdrink. Dass du letzte Woche Stress mit Mathe hattest. Das ist der Unterschied.",
+  },
+];
+---
+
+<section class="manifest" id="manifest">
+  <div class="container manifest__grid">
+    <div class="manifest__intro">
+      <p class="eyebrow">Wofür wir stehen</p>
+      <h2 class="manifest__headline">
+        Zuhause ist kein Ort. <br />
+        <em>Zuhause ist, wenn jemand</em> <br />
+        <span class="manifest__underline">auf dich wartet.</span>
+      </h2>
+      <p class="manifest__body">
+        Heranwachsen ist laut. Schule ruft, Zuhause ruft, Insta ruft, und
+        dazwischen — du. Wir glauben, dass es zwischen all dem einen Ort
+        geben muss, an dem niemand was von dir will. Wo Scheitern erlaubt ist,
+        Stillsein erlaubt ist, und Quatschmachen sowieso.
+      </p>
+      <p class="manifest__signature hand">— das Team von Zuhause²</p>
+    </div>
+
+    <ol class="manifest__pillars">
+      {pillars.map((p) => (
+        <li class="pillar">
+          <div class="pillar__head">
+            <span class="pillar__no">{p.no}</span>
+            <h3 class="pillar__word">{p.word}</h3>
+          </div>
+          <p class="pillar__body">{p.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .manifest {
+    background:
+      linear-gradient(180deg, transparent 0%, color-mix(in oklab, var(--paper-deep) 35%, transparent) 50%, transparent 100%);
+  }
+
+  .manifest__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(40px, 7vw, 100px);
+    align-items: start;
+  }
+
+  .manifest__headline {
+    margin-top: 24px;
+    font-size: clamp(2rem, 4.6vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .manifest__headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--forest);
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  }
+
+  .manifest__underline {
+    display: inline-block;
+    position: relative;
+    color: var(--terracotta);
+    font-style: italic;
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  }
+
+  .manifest__underline::after {
+    content: "";
+    position: absolute;
+    left: -4px;
+    right: -4px;
+    bottom: -6px;
+    height: 8px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'><path d='M2 5 C 30 2, 60 7, 90 4 S 160 6, 198 3' fill='none' stroke='%23c25a3f' stroke-width='2' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .manifest__body {
+    margin-top: 28px;
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+
+  .manifest__signature {
+    margin-top: 26px;
+    font-size: 1.3rem;
+    color: var(--terracotta);
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+
+  .manifest__pillars {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 20px;
+    position: relative;
+    top: 20px;
+  }
+
+  .pillar {
+    background: var(--paper-soft);
+    border: 1px solid color-mix(in oklab, var(--line) 70%, transparent);
+    border-radius: var(--r-lg);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 280ms ease;
+  }
+
+  .pillar:hover {
+    transform: translateY(-3px) rotate(0.3deg);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .pillar:nth-child(2) {
+    margin-left: clamp(12px, 4vw, 48px);
+  }
+  .pillar:nth-child(3) {
+    margin-left: clamp(24px, 7vw, 90px);
+  }
+
+  .pillar__head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .pillar__no {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--terracotta);
+    letter-spacing: 0.12em;
+    font-variation-settings: "SOFT" 50, "WONK" 0;
+  }
+
+  .pillar__word {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--forest);
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  }
+
+  .pillar__body {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 860px) {
+    .manifest__grid {
+      grid-template-columns: 1fr;
+    }
+    .pillar:nth-child(2),
+    .pillar:nth-child(3) {
+      margin-left: 0;
+    }
+  }
+</style>

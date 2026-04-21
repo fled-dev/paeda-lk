@@ -1,0 +1,374 @@
+---
+const hours = [
+  { d: "Montag", t: "14:00 — 21:00" },
+  { d: "Dienstag", t: "14:00 — 21:00" },
+  { d: "Mittwoch", t: "14:00 — 21:00" },
+  { d: "Donnerstag", t: "14:00 — 22:00" },
+  { d: "Freitag", t: "14:00 — 23:00" },
+  { d: "Samstag", t: "11:00 — 22:00" },
+  { d: "Sonntag", t: "geschlossen", closed: true },
+];
+---
+
+<section class="visit" id="besuch">
+  <div class="container visit__grid">
+    <div class="visit__card visit__card--postcard">
+      <div class="postcard">
+        <div class="postcard__top">
+          <p class="postcard__from">
+            <span class="eyebrow">Besuch</span>
+            Vorbeikommen
+          </p>
+          <div class="postcard__stamp">
+            <svg viewBox="0 0 70 90" width="62" height="78" aria-hidden="true">
+              <rect x="1" y="1" width="68" height="88" fill="none" stroke="#c25a3f" stroke-width="1.2" stroke-dasharray="3 3"/>
+              <rect x="6" y="6" width="58" height="78" fill="#f4e4c7" />
+              <text x="35" y="32" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="14" fill="#2a3d33">Post</text>
+              <text x="35" y="50" text-anchor="middle" font-family="Fraunces, serif" font-size="10" fill="#2a3d33">aus</text>
+              <text x="35" y="66" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#c25a3f">Meer­busch</text>
+            </svg>
+          </div>
+        </div>
+
+        <h2 class="postcard__headline">
+          Komm vorbei. <br />
+          <em>Wir machen Tee.</em>
+        </h2>
+
+        <address class="postcard__addr">
+          <strong>Zuhause²</strong>
+          <br />
+          Mönkesweg 58 <br />
+          40670 Meerbusch <br />
+          <span>(Im Nebentrakt der Aula, 1. OG)</span>
+        </address>
+
+        <dl class="postcard__contact">
+          <div>
+            <dt>E-Mail</dt>
+            <dd>hallo@zuhause-quadrat.de</dd>
+          </div>
+          <div>
+            <dt>Instagram</dt>
+            <dd>@zuhause.quadrat</dd>
+          </div>
+          <div>
+            <dt>Notfall</dt>
+            <dd>Frau Bredow · persönlich</dd>
+          </div>
+        </dl>
+
+        <div class="postcard__rubber" aria-hidden="true">
+          <svg viewBox="0 0 160 60" width="160" height="60">
+            <g transform="rotate(-8 80 30)">
+              <rect x="3" y="3" width="154" height="54" fill="none" stroke="#c25a3f" stroke-width="2.2" />
+              <rect x="8" y="8" width="144" height="44" fill="none" stroke="#c25a3f" stroke-width="1" />
+              <text x="80" y="28" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="14" letter-spacing="3" fill="#c25a3f">GEÖFFNET</text>
+              <text x="80" y="46" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="600" font-size="9" letter-spacing="2" fill="#c25a3f">SEIT SEPT. 2024</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="visit__right">
+      <div class="hours">
+        <header class="hours__head">
+          <p class="eyebrow">Öffnungszeiten</p>
+          <h3>Wann wir da sind.</h3>
+        </header>
+        <ul>
+          {hours.map((h) => (
+            <li class={h.closed ? "row row--closed" : "row"}>
+              <span class="row__d">{h.d}</span>
+              <span class="row__dots" aria-hidden="true"></span>
+              <span class="row__t">{h.t}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="hours__foot">
+          <span class="hand">Ferien?</span>
+          In den Schul­ferien meis­tens trotzdem offen. Ak­tu­el­les auf Insta.
+        </p>
+      </div>
+
+      <div class="map" aria-hidden="true">
+        <div class="map__frame">
+          <svg viewBox="0 0 400 260" class="map__svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="260" fill="#eadfbf"/>
+            <g stroke="#c7b58a" stroke-width="1" fill="none">
+              <path d="M0 60 H400 M0 120 H400 M0 180 H400"/>
+              <path d="M80 0 V260 M180 0 V260 M280 0 V260"/>
+              <path d="M0 30 H400" stroke-dasharray="3 3"/>
+              <path d="M0 220 H400" stroke-dasharray="3 3"/>
+            </g>
+            <path d="M40 130 C 120 130, 180 80, 260 100 S 380 180, 400 170" stroke="#c25a3f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <circle cx="200" cy="130" r="6" fill="#c25a3f"/>
+            <circle cx="200" cy="130" r="14" fill="none" stroke="#c25a3f" stroke-width="1" opacity=".6"/>
+            <circle cx="200" cy="130" r="22" fill="none" stroke="#c25a3f" stroke-width="1" opacity=".3"/>
+            <text x="210" y="120" font-family="Fraunces, serif" font-style="italic" font-size="13" fill="#2a3d33">Mönkesweg 58</text>
+            <text x="14" y="22" font-family="Manrope, sans-serif" font-size="9" letter-spacing="2" fill="#3f5a4a" font-weight="600">MEERBUSCH · BÜDERICH</text>
+          </svg>
+          <div class="map__overlay">
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="M2 8 H14 M9 3 L14 8 L9 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Route in Maps öffnen
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .visit {
+    position: relative;
+  }
+
+  .visit__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 56px);
+    align-items: stretch;
+  }
+
+  /* Postcard */
+  .postcard {
+    position: relative;
+    padding: clamp(28px, 4vw, 48px);
+    background: linear-gradient(180deg, #fbf4e2, #f5e8cb);
+    border: 1px solid color-mix(in oklab, var(--line) 80%, transparent);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-lift);
+    overflow: hidden;
+  }
+
+  .postcard::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px dashed color-mix(in oklab, var(--terracotta) 45%, transparent);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .postcard__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .postcard__from {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+
+  .postcard__from .eyebrow {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .postcard__stamp {
+    transform: rotate(4deg);
+  }
+
+  .postcard__headline {
+    margin-top: 24px;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .postcard__headline em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-weight: 400;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+
+  .postcard__addr {
+    margin-top: 26px;
+    font-style: normal;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: var(--ink);
+    font-variation-settings: "SOFT" 70, "WONK" 1;
+  }
+
+  .postcard__addr strong {
+    font-weight: 600;
+  }
+
+  .postcard__addr span {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    font-family: var(--font-body);
+  }
+
+  .postcard__contact {
+    margin-top: 28px;
+    display: grid;
+    gap: 14px;
+    padding-top: 22px;
+    border-top: 1px dashed color-mix(in oklab, var(--terracotta) 35%, transparent);
+  }
+
+  .postcard__contact > div {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+
+  .postcard__contact dt {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--forest-soft);
+    font-weight: 600;
+  }
+
+  .postcard__contact dd {
+    margin: 0;
+    font-size: 0.98rem;
+    color: var(--ink);
+  }
+
+  .postcard__rubber {
+    position: absolute;
+    right: -12px;
+    bottom: 20px;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  /* Hours */
+  .visit__right {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .hours {
+    background: var(--paper-soft);
+    border: 1px solid color-mix(in oklab, var(--line) 70%, transparent);
+    border-radius: var(--r-lg);
+    padding: clamp(24px, 3vw, 36px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .hours__head h3 {
+    margin-top: 8px;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+
+  .hours ul {
+    list-style: none;
+    padding: 0;
+    margin: 22px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: baseline;
+    font-size: 0.96rem;
+  }
+
+  .row__d {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .row__dots {
+    border-bottom: 1.5px dotted color-mix(in oklab, var(--line) 120%, transparent);
+    position: relative;
+    top: -4px;
+  }
+
+  .row__t {
+    font-variant-numeric: tabular-nums;
+    color: var(--forest);
+    font-weight: 600;
+  }
+
+  .row--closed .row__t {
+    color: var(--terracotta);
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  .row--closed {
+    opacity: 0.75;
+  }
+
+  .hours__foot {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .hours__foot .hand {
+    font-size: 1.1rem;
+    color: var(--terracotta);
+    margin-right: 4px;
+  }
+
+  /* Map */
+  .map__frame {
+    position: relative;
+    background: var(--paper-soft);
+    border: 1px solid color-mix(in oklab, var(--line) 70%, transparent);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .map__svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .map__overlay {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--forest);
+    box-shadow: var(--shadow-soft);
+  }
+
+  @media (max-width: 860px) {
+    .visit__grid {
+      grid-template-columns: 1fr;
+    }
+    .postcard__contact > div {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+  }
+</style>

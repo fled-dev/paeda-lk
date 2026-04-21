@@ -1,0 +1,349 @@
+---
+const week = [
+  {
+    day: "Mo",
+    date: "Montag",
+    time: "18:00 – 21:00",
+    title: "Spieleabend",
+    kind: "Klassiker",
+    body:
+      "Brettspiele, Karten, Wer­wolf. Der Sieger des Abends bekommt einen Drink + Snack aufs Haus — verlieren kostet nichts.",
+    accent: "ochre",
+  },
+  {
+    day: "Di",
+    date: "Dienstag",
+    time: "15:00 – 20:00",
+    title: "Lern-Café",
+    kind: "offen",
+    body:
+      "Haus­aufgaben in Gesellschaft. Auf Wunsch Nach­hilfe-Vermittlung durch ältere Sem­ester — kostenfrei, oft gegen Kuchen.",
+    accent: "cool",
+  },
+  {
+    day: "Mi",
+    date: "Mittwoch",
+    time: "19:00 – 21:00",
+    title: "Vortragsabend",
+    kind: "Berufe × Mental Health",
+    body:
+      "Gäste erzählen, wie sie da­hin gekommen sind, wo sie heute sind — und was dabei schief­ging. Ab­wech­selnd: Be­rufe und Mental Health.",
+    accent: "terracotta",
+    highlight: true,
+  },
+  {
+    day: "Do",
+    date: "Donnerstag",
+    time: "19:00 – 22:00",
+    title: "Diskussions­abend",
+    kind: "Themen offen",
+    body:
+      "Du bringst das Thema mit, oder findest eines an der Tafel. Regeln gibt's drei: zuhören, ausreden lassen, niemand greift niemanden an.",
+    accent: "forest",
+  },
+  {
+    day: "Fr",
+    date: "Freitag",
+    time: "19:30 – 23:00",
+    title: "Kreativer Abend",
+    kind: "Poetry Slam · Open Mic",
+    body:
+      "Bühne frei. Poetry Slam, Musik­stücke, eigene Songs, Stand-up wenn du dich traust. Alle zwei Wochen Wett­bewerb, sonst offen.",
+    accent: "rose",
+  },
+  {
+    day: "Sa",
+    date: "Samstag",
+    time: "11:00 – 22:00",
+    title: "Brunch & offen",
+    kind: "kein Programm",
+    body:
+      "Rühr­eier, Pancakes, Gespräche. Bis 14 Uhr Brunch, danach offen. Wer bleibt, bleibt.",
+    accent: "ochre",
+  },
+  {
+    day: "So",
+    date: "Sonntag",
+    time: "geschlossen",
+    title: "Pause.",
+    kind: "",
+    body:
+      "Auch Zuhause² braucht mal Sonntag. Wir sehen uns Montag wieder.",
+    accent: "mute",
+  },
+];
+---
+
+<section class="program" id="programm">
+  <div class="container">
+    <header class="program__head">
+      <div>
+        <p class="eyebrow">Programm</p>
+        <h2 class="program__headline">
+          Eine Woche <em>bei uns.</em>
+        </h2>
+      </div>
+      <p class="program__intro">
+        Jede Woche dasselbe Gerüst, nie derselbe Abend. Was du nicht auf der Liste
+        findest: einfach fragen. Das meiste entsteht sowieso aus Ideen von euch.
+      </p>
+    </header>
+
+    <ol class="week">
+      {week.map((d, i) => (
+        <li class={`day day--${d.accent} ${d.highlight ? "day--hi" : ""}`} style={`--i:${i}`}>
+          <div class="day__stripe">
+            <span class="day__dayshort">{d.day}</span>
+            <span class="day__dayfull">{d.date}</span>
+          </div>
+
+          <div class="day__body">
+            <div class="day__meta">
+              <span class="day__time">{d.time}</span>
+              {d.kind && <span class="day__kind">{d.kind}</span>}
+            </div>
+            <h3 class="day__title">{d.title}</h3>
+            <p class="day__text">{d.body}</p>
+          </div>
+
+          <div class="day__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+              <path d="M5 12 H19 M13 6 L19 12 L13 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <aside class="program__note">
+      <svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+        <path d="M8 20 L18 28 L34 10" stroke="#c25a3f" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p>
+        <span class="hand">Idee?</span> Schreib sie ans Schwarze Brett in der Lern-Ecke.
+        Jede zweite Woche stimmt das Haus ab — und macht sie.
+      </p>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .program {
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--paper-deep) 20%, transparent), transparent 40%);
+  }
+
+  .program__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: clamp(24px, 6vw, 80px);
+    align-items: end;
+    margin-bottom: clamp(40px, 6vw, 80px);
+  }
+
+  .program__headline {
+    margin-top: 18px;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .program__headline em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-weight: 400;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+
+  .program__intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 44ch;
+    padding-bottom: 10px;
+  }
+
+  .week {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .day {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    align-items: stretch;
+    gap: 28px;
+    padding: 24px clamp(20px, 3vw, 36px);
+    background: var(--paper-soft);
+    border: 1px solid color-mix(in oklab, var(--line) 70%, transparent);
+    border-radius: var(--r-lg);
+    transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), background 260ms ease, box-shadow 260ms ease;
+    animation: riseIn 700ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i) * 60ms) both;
+  }
+
+  .day:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .day__stripe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    padding-right: 24px;
+    border-right: 1px dashed var(--line);
+  }
+
+  .day__dayshort {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--ink);
+    font-weight: 400;
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  }
+
+  .day__dayfull {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--forest-soft);
+    font-weight: 600;
+  }
+
+  .day__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .day__meta {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest-soft);
+  }
+
+  .day__time {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .day__kind {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--paper-deep) 55%, transparent);
+    color: var(--ink-soft);
+  }
+
+  .day__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+    color: var(--ink);
+    font-weight: 500;
+    font-variation-settings: "SOFT" 60, "WONK" 1;
+  }
+
+  .day__text {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 56ch;
+  }
+
+  .day__arrow {
+    align-self: center;
+    color: var(--ink-soft);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: all 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .day:hover .day__arrow {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--terracotta);
+  }
+
+  /* accent variants */
+  .day--terracotta {
+    border-color: color-mix(in oklab, var(--terracotta) 28%, transparent);
+    background: color-mix(in oklab, var(--terracotta) 6%, var(--paper-soft));
+  }
+  .day--ochre {
+    border-color: color-mix(in oklab, var(--ochre) 28%, transparent);
+    background: color-mix(in oklab, var(--ochre) 6%, var(--paper-soft));
+  }
+  .day--cool {
+    border-color: color-mix(in oklab, var(--forest) 18%, transparent);
+    background: color-mix(in oklab, var(--forest) 3%, var(--paper-soft));
+  }
+  .day--rose {
+    border-color: color-mix(in oklab, var(--rose) 30%, transparent);
+    background: color-mix(in oklab, var(--rose) 9%, var(--paper-soft));
+  }
+  .day--forest {
+    border-color: color-mix(in oklab, var(--forest) 24%, transparent);
+  }
+  .day--mute {
+    opacity: 0.65;
+    border-style: dashed;
+  }
+
+  .day--hi {
+    border-width: 1.5px;
+    box-shadow: 0 18px 40px -22px rgba(194, 90, 63, 0.35);
+  }
+
+  .program__note {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 26px;
+    background: color-mix(in oklab, var(--terracotta) 6%, var(--paper-soft));
+    border: 1px dashed color-mix(in oklab, var(--terracotta) 50%, transparent);
+    border-radius: var(--r-lg);
+    max-width: 640px;
+  }
+
+  .program__note p {
+    font-size: 0.97rem;
+    color: var(--ink-soft);
+  }
+
+  .program__note .hand {
+    font-size: 1.3rem;
+    margin-right: 4px;
+  }
+
+  @media (max-width: 760px) {
+    .program__head {
+      grid-template-columns: 1fr;
+    }
+    .day {
+      grid-template-columns: 70px 1fr;
+      gap: 16px;
+      padding: 18px;
+    }
+    .day__stripe {
+      padding-right: 12px;
+    }
+    .day__dayshort {
+      font-size: 1.9rem;
+    }
+    .day__arrow {
+      display: none;
+    }
+  }
+</style>

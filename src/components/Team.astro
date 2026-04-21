@@ -1,0 +1,248 @@
+---
+import Photo from "./Photo.astro";
+
+const team = [
+  {
+    name: "Lina Brückner",
+    role: "Teamleitung",
+    pronoun: "sie",
+    since: "seit 2024",
+    blurb:
+      "Sozialpädagogin, ehemalige Schülerin dieser Schule. Hält den Laden zusammen — und die Bar, wenn's voll wird.",
+    tone: "warm",
+    rot: -2,
+  },
+  {
+    name: "Jonas Kleff",
+    role: "Teamleitung",
+    pronoun: "er",
+    since: "seit 2024",
+    blurb:
+      "Studiert Pä­dagogik im Master, spielt zu viel Magic. Verantwortlich für Programm und Terrasse.",
+    tone: "ochre",
+    rot: 1.5,
+  },
+  {
+    name: "Frau Bredow",
+    role: "Seelsorge",
+    pronoun: "sie",
+    since: "Mi & Do",
+    blurb:
+      "Ausgebildete Beraterin, schweigt zuverlässig. Wenn du willst, auch namenlos. Kein Papierkram, keine Akte.",
+    tone: "rose",
+    rot: -1,
+  },
+  {
+    name: "Herr Okafor",
+    role: "Seelsorge",
+    pronoun: "er",
+    since: "Di & Fr",
+    blurb:
+      "Schulpsychologe im Teil­deputat bei uns. Kann auch auf Englisch, Französisch und — wenn's pressiert — in Meerbuscher Platt.",
+    tone: "cool",
+    rot: 2,
+  },
+  {
+    name: "Mira, Tarek, Jul, Sami",
+    role: "Aushilfen",
+    pronoun: "wir",
+    since: "rotierend",
+    blurb:
+      "Selbst Schüler:innen, selbst Stamm­gäste. Hinter der Bar, an der Tür, überall wo's gerade brennt.",
+    tone: "warm",
+    rot: -1.5,
+  },
+];
+---
+
+<section class="team" id="team">
+  <div class="container team__grid">
+    <div class="team__intro">
+      <p class="eyebrow">Das Team</p>
+      <h2 class="team__headline">
+        Menschen, die <br />
+        <em>dich kennen wollen.</em>
+      </h2>
+      <p class="team__body">
+        Drei Rollen, fünf Gesichter, ein Anspruch: wir sind für euch da — nicht
+        anders&shy;herum. Bei uns kippen hierarchien in den ersten zehn Minuten.
+      </p>
+      <div class="team__legend">
+        <div><span class="dot dot--lead"></span> Teamleitung</div>
+        <div><span class="dot dot--care"></span> Seelsorge</div>
+        <div><span class="dot dot--help"></span> Aushilfen</div>
+      </div>
+    </div>
+
+    <div class="team__cards">
+      {team.map((m, i) => (
+        <article class="member" style={`--rot:${m.rot}deg; --i:${i}`}>
+          <div class="member__photo">
+            <Photo
+              tone={m.tone as any}
+              aspect="4/5"
+              caption={m.pronoun}
+              alt={`${m.name} — ${m.role}`}
+            />
+          </div>
+          <div class="member__info">
+            <p class="member__role">{m.role} <span>·</span> {m.since}</p>
+            <h3 class="member__name">{m.name}</h3>
+            <p class="member__blurb">{m.blurb}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+
+  .team__headline {
+    margin-top: 18px;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .team__headline em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-weight: 400;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+
+  .team__body {
+    margin-top: 26px;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 40ch;
+  }
+
+  .team__legend {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .team__legend > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+
+  .dot--lead {
+    background: var(--terracotta);
+  }
+  .dot--care {
+    background: var(--forest);
+  }
+  .dot--help {
+    background: var(--ochre);
+  }
+
+  .team__cards {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: clamp(16px, 2vw, 26px);
+  }
+
+  .member {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    animation: riseIn 700ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i) * 70ms) both;
+  }
+
+  .member:nth-child(1) {
+    grid-column: span 3;
+  }
+  .member:nth-child(2) {
+    grid-column: span 3;
+    margin-top: 28px;
+  }
+  .member:nth-child(3) {
+    grid-column: span 2;
+  }
+  .member:nth-child(4) {
+    grid-column: span 2;
+    margin-top: 22px;
+  }
+  .member:nth-child(5) {
+    grid-column: span 2;
+    margin-top: 48px;
+  }
+
+  .member__photo {
+    transform: rotate(var(--rot));
+    transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .member:hover .member__photo {
+    transform: rotate(0) translateY(-4px);
+  }
+
+  .member__info {
+    padding-inline: 6px;
+  }
+
+  .member__role {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--forest-soft);
+    font-weight: 600;
+  }
+
+  .member__role span {
+    margin-inline: 6px;
+    color: var(--terracotta);
+  }
+
+  .member__name {
+    margin-top: 6px;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+    font-variation-settings: "SOFT" 70, "WONK" 1;
+  }
+
+  .member__blurb {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 860px) {
+    .team__grid {
+      grid-template-columns: 1fr;
+    }
+    .team__cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .member,
+    .member:nth-child(n) {
+      grid-column: span 1;
+      margin-top: 0;
+    }
+  }
+</style>

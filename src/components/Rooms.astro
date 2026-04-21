@@ -1,0 +1,266 @@
+---
+import Photo from "./Photo.astro";
+
+const rooms = [
+  {
+    id: "gemeinschaft",
+    title: "Gemeinschaftsraum",
+    tag: "immer offen",
+    copy: "Wo Brett­spiele länger dauern als geplant. Wo Bücher Esels­ohren haben dürfen. Wo das Sofa zur In­sti­tu­tion wurde.",
+    items: ["ca. 60 Spiele", "~400 Bücher", "Sofa-Demokratie"],
+    tone: "warm",
+    featured: true,
+    caption: "Sonntag­nach­mittag",
+  },
+  {
+    id: "kreativ",
+    title: "Kreativer Raum",
+    tag: "laut erlaubt",
+    copy: "Klavier, Ukulele, Pinsel, Pappe, Nähmaschine. Was du brauchst, ist da. Was du machst, ist deins.",
+    items: ["Klavier + Ukulelen", "Basteltisch", "Musikbox & Vinyl"],
+    tone: "ochre",
+    caption: "Donnerstag, 19:42",
+  },
+  {
+    id: "bar",
+    title: "Die Bar",
+    tag: "bezahlt mit Bohnen",
+    copy: "Hei­ßer Kakao, kalter Eistee, dazwischen alles. Bezahlt wird mit Boh­nen — un­se­rer hau­sei­ge­nen Wäh­rung. Die ersten drei gehen aufs Haus.",
+    items: ["Alkoholfrei. Immer.", "Bohnen-Pfand", "Hausgemacht"],
+    tone: "rose",
+    caption: "erste Runde",
+  },
+  {
+    id: "trading",
+    title: "Trading-Ecke",
+    tag: "Karten & Decks",
+    copy: "Pokémon, Magic, Yu-Gi-Oh!. Decks bau­en, Karten tau­schen, Turniere spielen. Jeden Freitag neue Booster-Öff­nungs-Ses­sion.",
+    items: ["Turnier-Fr 17 Uhr", "Tausch-Boards", "Sleeves & Mats"],
+    tone: "cool",
+    caption: "Freitag­turnier",
+  },
+  {
+    id: "terrasse",
+    title: "Terrasse",
+    tag: "Mai – Oktober",
+    copy: "Som­mer­abends Grillen, im Früh­ling pflan­zen wir die Beete neu. Die Licht­erkette hat länger überlebt als der Architekt dachte.",
+    items: ["Grill­bereich", "Hochbeete", "Hänge­matten"],
+    tone: "warm",
+    featured: true,
+    caption: "24° im April",
+  },
+  {
+    id: "lernen",
+    title: "Lern-Ecke",
+    tag: "still, aber nicht stumm",
+    copy: "Haus­aufgaben, Klau­sur­vorbereitung, oder ein­fach mal in Ruhe lesen. Das Schwarze Brett hat mehr News als dein Feed.",
+    items: ["Schwarzes Brett", "Nachhilfe-Vermittlung", "Stecker für alles"],
+    tone: "cool",
+    caption: "Dienstag, 16:00",
+  },
+  {
+    id: "seelsorge",
+    title: "Seelsorge-Raum",
+    tag: "vertraulich",
+    copy: "Wenn Reden hilft. Wer hier sitzt, wird nicht gestört. Wer hier zu­hört, schweigt. Ohne An­mel­dung, ohne Papierkram.",
+    items: ["Ohne Termin", "Anonym möglich", "Immer Mi & Do"],
+    tone: "rose",
+    caption: "—",
+  },
+];
+---
+
+<section class="rooms" id="raeume">
+  <div class="container">
+    <header class="rooms__header">
+      <div>
+        <p class="eyebrow">Räumlichkeiten</p>
+        <h2 class="rooms__headline">
+          Sieben Räume. <em>Ein Zuhause.</em>
+        </h2>
+      </div>
+      <p class="rooms__intro">
+        Wir haben den ehe­maligen Lehrer­zimmer-Trakt um­gebaut. Keine
+        Flucht­wege mehr vor­schriftsmäßig beschildert, dafür sieben Räume,
+        die anders funk­tio­nieren als alles, was sonst Schule ist.
+      </p>
+    </header>
+
+    <div class="rooms__grid">
+      {rooms.map((r, i) => (
+        <article class={`room ${r.featured ? "room--featured" : ""}`} id={`raum-${r.id}`}>
+          <div class="room__media">
+            <Photo
+              tone={r.tone as any}
+              aspect={r.featured ? "16/10" : "4/5"}
+              caption={r.caption}
+              alt={`${r.title} — ${r.copy.split(".")[0]}`}
+              rotate={i % 2 === 0 ? -1.2 : 1.4}
+            />
+          </div>
+          <div class="room__copy">
+            <div class="room__tagrow">
+              <span class="room__num">R.{String(i + 1).padStart(2, "0")}</span>
+              <span class="room__tag">{r.tag}</span>
+            </div>
+            <h3 class="room__title">{r.title}</h3>
+            <p class="room__body">{r.copy}</p>
+            <ul class="room__items">
+              {r.items.map((it) => <li>{it}</li>)}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .rooms__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(24px, 6vw, 80px);
+    align-items: end;
+    margin-bottom: clamp(40px, 6vw, 80px);
+  }
+
+  .rooms__headline {
+    margin-top: 18px;
+    font-size: clamp(2.2rem, 5.4vw, 4.2rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+
+  .rooms__headline em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-weight: 400;
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  }
+
+  .rooms__intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 42ch;
+    padding-bottom: 10px;
+  }
+
+  .rooms__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: clamp(24px, 3vw, 44px);
+  }
+
+  .room {
+    grid-column: span 3;
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+
+  .room--featured {
+    grid-column: span 6;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    grid-template-rows: auto;
+    gap: clamp(24px, 4vw, 60px);
+    align-items: center;
+    padding: clamp(20px, 3vw, 40px) 0;
+    border-top: 1px dashed var(--line);
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .room--featured:nth-of-type(even) {
+    direction: rtl;
+  }
+
+  .room--featured:nth-of-type(even) > * {
+    direction: ltr;
+  }
+
+  .room__media {
+    position: relative;
+  }
+
+  .room__tagrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .room__num {
+    font-weight: 700;
+    color: var(--terracotta);
+  }
+
+  .room__tag {
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--forest-soft);
+    background: var(--paper-soft);
+  }
+
+  .room__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    color: var(--ink);
+    font-weight: 500;
+    font-variation-settings: "SOFT" 70, "WONK" 1;
+  }
+
+  .room--featured .room__title {
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--forest);
+  }
+
+  .room__body {
+    margin-top: 10px;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 42ch;
+  }
+
+  .room__items {
+    margin-top: 18px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .room__items li {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--paper-deep) 60%, transparent);
+    font-size: 0.82rem;
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  @media (max-width: 860px) {
+    .rooms__header {
+      grid-template-columns: 1fr;
+    }
+    .rooms__grid {
+      grid-template-columns: 1fr;
+    }
+    .room,
+    .room--featured {
+      grid-column: span 1;
+      grid-template-columns: 1fr;
+    }
+    .room--featured:nth-of-type(even) {
+      direction: ltr;
+    }
+  }
+</style>
