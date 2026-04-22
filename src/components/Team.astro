@@ -11,6 +11,7 @@ const team = [
       "Sozialpädagogin, ehemalige Schülerin dieser Schule. Hält den Laden zusammen — und die Bar, wenn's voll wird.",
     tone: "warm",
     rot: -2,
+    image: "/images/team/lina-brueckner.jpg",
   },
   {
     name: "Jonas Kleff",
@@ -21,6 +22,7 @@ const team = [
       "Studiert Pä­dagogik im Master, spielt zu viel Magic. Verantwortlich für Programm und Terrasse.",
     tone: "ochre",
     rot: 1.5,
+    image: "/images/team/jonas-kleff.jpg",
   },
   {
     name: "Frau Bredow",
@@ -74,6 +76,7 @@ const team = [
         <article class="member" style={`--rot:${m.rot}deg; --i:${i}`}>
           <div class="member__photo">
             <Photo
+              src={(m as any).image}
               tone={m.tone as any}
               aspect="4/5"
               caption={m.pronoun}
