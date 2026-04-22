@@ -11,6 +11,7 @@ const team = [
       "Sozialpädagogin, ehemalige Schülerin dieser Schule. Hält den Laden zusammen — und die Bar, wenn's voll wird.",
     tone: "warm",
     rot: -2,
+    image: "/images/team/lina-brueckner.jpg",
   },
   {
     name: "Jonas Kleff",
@@ -21,6 +22,7 @@ const team = [
       "Studiert Pä­dagogik im Master, spielt zu viel Magic. Verantwortlich für Programm und Terrasse.",
     tone: "ochre",
     rot: 1.5,
+    image: "/images/team/jonas-kleff.jpg",
   },
   {
     name: "Frau Bredow",
@@ -31,6 +33,7 @@ const team = [
       "Ausgebildete Beraterin, schweigt zuverlässig. Wenn du willst, auch namenlos. Kein Papierkram, keine Akte.",
     tone: "rose",
     rot: -1,
+    image: "/images/team/frau-bredow.jpg",
   },
   {
     name: "Herr Okafor",
@@ -41,6 +44,7 @@ const team = [
       "Schulpsychologe im Teil­deputat bei uns. Kann auch auf Englisch, Französisch und — wenn's pressiert — in Meerbuscher Platt.",
     tone: "cool",
     rot: 2,
+    image: "/images/team/herr-okafor.jpg",
   },
   {
     name: "Mira, Tarek, Jul, Sami",
@@ -74,6 +78,7 @@ const team = [
         <article class="member" style={`--rot:${m.rot}deg; --i:${i}`}>
           <div class="member__photo">
             <Photo
+              src={(m as any).image}
               tone={m.tone as any}
               aspect="4/5"
               caption={m.pronoun}
