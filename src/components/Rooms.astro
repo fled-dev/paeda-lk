@@ -11,6 +11,7 @@ const rooms = [
     tone: "warm",
     featured: true,
     caption: "Sonntag­nach­mittag",
+    image: "/images/rooms/bingo-runde.jpg",
   },
   {
     id: "kreativ",
@@ -20,6 +21,7 @@ const rooms = [
     items: ["Klavier + Ukulelen", "Basteltisch", "Musikbox & Vinyl"],
     tone: "ochre",
     caption: "Donnerstag, 19:42",
+    image: "/images/rooms/kreativ-werkstatt.jpg",
   },
   {
     id: "bar",
@@ -29,6 +31,7 @@ const rooms = [
     items: ["Alkoholfrei. Immer.", "Bohnen-Pfand", "Hausgemacht"],
     tone: "rose",
     caption: "erste Runde",
+    image: "/images/rooms/kakao-marshmallow.jpg",
   },
   {
     id: "trading",
@@ -38,6 +41,7 @@ const rooms = [
     items: ["Turnier-Fr 17 Uhr", "Tausch-Boards", "Sleeves & Mats"],
     tone: "cool",
     caption: "Freitag­turnier",
+    image: "/images/rooms/pokemon-karten.jpg",
   },
   {
     id: "terrasse",
@@ -91,6 +95,7 @@ const rooms = [
         <article class={`room ${r.featured ? "room--featured" : ""}`} id={`raum-${r.id}`}>
           <div class="room__media">
             <Photo
+              src={(r as any).image}
               tone={r.tone as any}
               aspect={r.featured ? "16/10" : "4/5"}
               caption={r.caption}
